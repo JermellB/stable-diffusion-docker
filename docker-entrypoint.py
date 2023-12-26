@@ -62,9 +62,8 @@ def stable_diffusion_pipeline(p):
     )
 
     config = DiffusionPipeline.load_config(p.model)
-    is_auto_pipeline = config["_class_name"] in [autos.sd, autos.sdxl]
 
-    if is_auto_pipeline:
+    if is_auto_pipeline := config["_class_name"] in [autos.sd, autos.sdxl]:
         p.diffuser = AutoPipelineForText2Image
 
     if p.image is not None:
